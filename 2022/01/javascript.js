@@ -21,18 +21,6 @@ function loadFileName () {
 	return fileName;
 }
 
-function readFile (fileName) {
-	try {
-		
-		const data = fs.readFileSync('./'+fileName, { encoding: 'utf8'});
-		data.split(/\r?\n/).forEach(line => {
-			console.log(`Line from file: ${line}`);
-		});
-	} catch (err) {
-		console.error(err);
-	}
-}
-
 async function getMaxCals(fileName) {
 	let sumValues = [];
 	let arr = [];
@@ -46,7 +34,7 @@ async function getMaxCals(fileName) {
 		rl.on('line', (line) => {
 			if (line.trim().length === 0) {
 				arr.forEach( num => {
-					sum += parseInt(num);
+					sum += Number(num);
 				})
 				sumValues.push(sum);
 				sum = 0;
@@ -75,7 +63,7 @@ async function getTop3MaxCals(fileName) {
 		rl.on('line', (line) => {
 			if (line.trim().length === 0) {
 				arr.forEach( num => {
-					sum += parseInt(num);
+					sum += Number(num);
 				})
 				sumValues.push(sum);
 				sum = 0;
