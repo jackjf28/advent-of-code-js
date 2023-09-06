@@ -2,8 +2,6 @@ const events = require('events');
 const fs = require("fs");
 const readline = require('readline');
 
-fn somfunc(arg: some::long::type) -> Result<some::long::type> {
-
 function loadFileName () {
 	let fileIdx = process.argv.indexOf('--file');
 	let fileName;
