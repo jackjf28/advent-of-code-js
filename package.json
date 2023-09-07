@@ -1,0 +1,25 @@
+{
+  "name": "advent-of-code",
+  "version": "1.0.0",
+  "description": "A node package to track advent of code challenges",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackjf28/advent-of-code-js.git"
+  },
+  "keywords": [
+    "advent-of-code",
+    "advent-of-code-js",
+    "js",
+    "node"
+  ],
+  "author": "Jack Farrell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jackjf28/advent-of-code-js/issues"
+  },
+  "homepage": "https://github.com/jackjf28/advent-of-code-js#readme"
+}

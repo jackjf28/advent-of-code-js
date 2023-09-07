@@ -1,25 +1,4 @@
-const events = require('events');
-const fs = require("fs");
-const readline = require('readline');
-
-function loadFileName () {
-	let fileIdx = process.argv.indexOf('--file');
-	let fileName;
-
-	try {
-		if (fileIdx > -1) {
-			fileName = process.argv[fileIdx + 1];
-		}
-		else {
-			let message = "--file flag is required.\n  Usage: 'node calorie-counting.js --file <filename>'";
-			throw new Error(message);
-		}
-	}
-	catch (err) {
-		console.error(err);
-	}
-	return fileName;
-}
+import { getInput } from "../../utils/index.js";
 
 async function getMaxCals(fileName) {
 	let sumValues = [];
@@ -83,9 +62,10 @@ async function getTop3MaxCals(fileName) {
 		console.error(err);
 	}
 }
-let fileName = loadFileName();
 
-getMaxCals(fileName);
+const input = getInput(import.meta.url);
 
-getTop3MaxCals(fileName);
+//getMaxCals(input);
+
+//getTop3MaxCals(fileName);
 
