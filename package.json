@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "A node package to track advent of code challenges",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "start": "def func [day:string] { node $\"./2022/($day)/index.js\"; }; func",
     "test": "test"
   },
   "repository": {
