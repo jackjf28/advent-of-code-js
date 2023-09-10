@@ -1,6 +1,7 @@
 import { getInput } from "../../utils/index.js";
 const os = require('node:os');
 
+//~\Development\advent-of-code-js> npm config set script-shell `C:\Program Files\nu\bin\nu.exe`
 //async function getMaxCals(fileName) {
 //	let sumValues = [];
 //	let arr = [];
