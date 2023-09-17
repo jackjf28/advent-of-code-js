@@ -3,7 +3,6 @@ import { getInput, splitLines } from "../../utils/index.js";
 function getPriority(char) {
     const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     return letters.indexOf(char) + 1;
-    
 }
 
 function processRucksack(rucksack) {
@@ -31,8 +30,23 @@ function processRucksack(rucksack) {
 function getSumOfCommonItems(input) {
     let arr = splitLines(input);
     let sum = arr.reduce((acc,element) => acc + processRucksack(element),0);
-    return sum;
+    return sum; 
 }
+
+//every 3 rows corresponds to a 'group'
+//find the common letter between three rows
+/*
+foreach line
+ if idx+1%3 == 0:
+    process current group
+    clear group
+ add row to group
+*/
+
+function createGroupsOfThree(input) {
+
+}
+ 
 
 const input = getInput(import.meta.url);
 const ans1 = getSumOfCommonItems(input);
