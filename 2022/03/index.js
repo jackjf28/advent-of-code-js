@@ -43,14 +43,31 @@ foreach line
  add row to group
 */
 
-function createGroupsOfThree(input) {
+function* createGroupsOfThree(input) {
+    let arr = splitLines(input);
+    let group = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (i !== 0 && i % 3 === 0) {
+            yield group;
+            group = [];
+        }
+        group.push(arr[i]);
+    }
+}
 
+function getSumofGroupCommonItems(input) {
+    const iterator = createGroupsOfThree(input);
+    let group = iterator.next();
+    while (!group.done) {
+        console.log(group.value[1]);
+        group = iterator.next()
+    }
 }
  
 
 const input = getInput(import.meta.url);
 const ans1 = getSumOfCommonItems(input);
-const ans2 = null;
+const ans2 = getSumofGroupCommonItems(input);
 
 console.log(`
 Answer 1: ${ans1}
