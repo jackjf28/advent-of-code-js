@@ -46,7 +46,7 @@ foreach line
 function* createGroupsOfThree(input) {
     let arr = splitLines(input);
     let group = [];
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i <= arr.length; i++) {
         if (i !== 0 && i % 3 === 0) {
             yield group;
             group = [];
@@ -55,13 +55,45 @@ function* createGroupsOfThree(input) {
     }
 }
 
+function GetCommonItemFromGroup(group) {
+    let groupCopy = group.slice();
+    let bigBag = group.reduce((a,b) => a.length > b.length ? a : b);
+    groupCopy.splice(group.indexOf(bigBag),1);
+    bigBag = bigBag.split('');
+    let bag1 = groupCopy[0].split('');
+    let bag2 = groupCopy[1].split('');
+    let idx1;
+    let idx2;
+    for (let i = 0; i < bigBag.length; i++) {
+        idx1 = bag1.indexOf(bigBag[i]);
+        idx2 = bag2.indexOf(bigBag[i]);
+        if (idx1 === -1 || idx2 === -1) {
+            continue;
+        }
+        else if (bag1[idx1] === bag2[idx2]) {
+            return getPriority(bigBag[i]);
+        }
+    }
+}
+
+
 function getSumofGroupCommonItems(input) {
     const iterator = createGroupsOfThree(input);
-    let group = iterator.next();
-    while (!group.done) {
-        console.log(group.value[1]);
-        group = iterator.next()
-    }
+    let sum = 0;
+    let group;
+    let prevGroup;
+    do {
+      prevGroup = group;
+      group = iterator.next();
+      if (!group.done) {
+        sum += GetCommonItemFromGroup(group.value);
+      }
+      if (sum > 2380){
+        console.log('hi');
+      }
+    } while(!group.done);
+
+    return sum;
 }
  
 
