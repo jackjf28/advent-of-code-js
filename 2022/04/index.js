@@ -13,7 +13,18 @@ function sectionIsSubset(input) {
 	 * example 1-5,2-3
 	 * if (s1.start < s2.start && s1.end > s2.end) || (s2.start < s1.start && s2.end > s1.end)
 	 */
-	if((+input[0][0] <= +input[1][0] && +input[0][1] >= +input[1][1]) || (+input[1][0] <= +input[0][0] && +input[1][1] >= +input[0][1])) {
+	if((input[0][0] <= input[1][0] && input[0][1] >= input[1][1]) || (input[1][0] <= input[0][0] && input[1][1] >= input[0][1])) {
+		return 1;
+	}
+	return 0;
+}
+
+function sectionsOverlap(input) {
+	// 1-4,2-6
+	// 10-22,1-2
+	let sec1 = input[0];
+	let sec2 = input[1];
+	if((sec1[0] <= sec2[0] && sec2[0] <= sec1[1]) || (sec2[0] <= sec1[0] && sec1[0] <= sec2[1])){
 		return 1;
 	}
 	return 0;
@@ -21,7 +32,7 @@ function sectionIsSubset(input) {
 
 function splitSections(input) {
 	return input.split(',')
-				.map(item => item.split('-'));
+				.map(item => item.split('-').map(Number));
 }
 
 function getNumberOfContainedSections(input) {
@@ -30,10 +41,16 @@ function getNumberOfContainedSections(input) {
 			.map(sectionIsSubset)
 			.reduce((a,b) => a+b,0);
 }
+function getNumberOfOverlapppingSections(input) {
+	return splitLines(input)
+			.map(splitSections)
+			.map(sectionsOverlap)
+			.reduce((a,b) => a + b, 0);
+}
 
 const input = getInput(import.meta.url);
 const ans1 = getNumberOfContainedSections(input);
-const ans2 = null;
+const ans2 = getNumberOfOverlapppingSections(input);
 
 console.log(`
 	Answer 1: ${ans1}
